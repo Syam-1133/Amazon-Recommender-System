@@ -807,11 +807,10 @@ python tests/test_system.py
 - **Testing**: Unit testing, integration testing, and mock data generation
 - **Documentation**: Comprehensive code documentation and API specifications
 
-### DevOps & Cloud:
+### Cloud:
 - **Containerization**: Docker multi-stage builds and optimization
 - **Cloud Deployment**: AWS Elastic Beanstalk with auto-scaling
-- **CI/CD**: Automated testing and deployment pipelines
-- **Monitoring**: Application logging and performance monitoring
+
 
 ### Big Data Technologies:
 - **Apache Spark**: Distributed data processing and analytics
@@ -823,52 +822,8 @@ python tests/test_system.py
 
 **Syam Gudipudi**
 - GitHub: [@Syam-1133](https://github.com/Syam-1133)
-- Email: [your-email@domain.com]
+- Email: [syamkklr123@gmail.com]
 
-## 📋 Development Timeline
-
-### Phase 1: Foundation (Weeks 1-2)
-- ✅ Data acquisition and exploration
-- ✅ ETL pipeline development
-- ✅ Data cleaning and preprocessing
-- ✅ Storage optimization with Parquet format
-
-### Phase 2: Core Algorithms (Weeks 3-4)
-- ✅ Search engine implementation
-- ✅ Query processor with advanced operators
-- ✅ Collaborative filtering algorithms
-- ✅ Similarity calculation optimization
-
-### Phase 3: Web Application (Weeks 5-6)
-- ✅ Flask web framework setup
-- ✅ RESTful API development
-- ✅ Interactive dashboard creation
-- ✅ Data visualization integration
-
-### Phase 4: Deployment & Testing (Week 7)
-- ✅ Docker containerization
-- ✅ AWS cloud deployment
-- ✅ Performance testing and optimization
-- ✅ Documentation and presentation
-
-## 🔮 Future Enhancements
-
-### Planned Features:
-- **Deep Learning Integration**: Neural collaborative filtering with TensorFlow
-- **Real-time Streaming**: Apache Kafka for live recommendation updates
-- **A/B Testing Framework**: Experimental design for algorithm comparison
-- **Advanced Analytics**: User behavior tracking and business intelligence
-- **Mobile Application**: React Native app for mobile access
-- **API Gateway**: Microservices orchestration with rate limiting
-
-### Technical Improvements:
-- **GraphQL API**: More efficient data fetching
-- **Redis Caching**: Distributed caching for better performance
-- **Elasticsearch**: Advanced text search capabilities
-- **Kubernetes**: Container orchestration for better scalability
-- **MLOps Pipeline**: Automated model training and deployment
-
----
 
 <div align="center">
 
@@ -924,9 +879,9 @@ python tests/test_system.py
 
 | Category | Skills | Level |
 |----------|--------|-------|
-| **🤖 Machine Learning** | Collaborative Filtering, Matrix Factorization, Deep Learning | ![Expert](https://img.shields.io/badge/Level-Expert-gold) |
+| **🤖 Machine Learning** | Collaborative Filtering, Matrix Factorization| ![Expert](https://img.shields.io/badge/Level-Expert-gold) |
 | **📊 Data Science** | Data Mining, Statistical Analysis, Predictive Modeling | ![Advanced](https://img.shields.io/badge/Level-Advanced-blue) |
-| **☁️ Cloud Computing** | AWS, Docker, Microservices, DevOps | ![Professional](https://img.shields.io/badge/Level-Professional-green) |
+| **☁️ Cloud Computing** | AWS, Docker | ![Professional](https://img.shields.io/badge/Level-Professional-green) |
 | **🐍 Python Development** | Flask, FastAPI, Pandas, NumPy, Scikit-learn | ![Expert](https://img.shields.io/badge/Level-Expert-gold) |
 | **🏗️ System Design** | Scalable Architecture, Performance Optimization | ![Advanced](https://img.shields.io/badge/Level-Advanced-blue) |
 
@@ -1008,8 +963,3 @@ python tests/test_system.py
 
 </div>
 
-## Deliverables
-
-1. **May 5th 1:30 PM**: Project Presentation
-2. **May 5th EOD**: Source Code
-3. **May 5th EOD**: Project Report
