@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Recommender System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #ff9a56, #ffad56);
+            color: white;
+            padding: 100px 0;
+        }
+        .feature-card {
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .stats-card {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-shopping-cart me-2"></i>Amazon Recommender System
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link" href="/recommendations">Recommendations</a>
+                <a class="nav-link" href="/analytics">Analytics</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Amazon Product Analytics & Recommendations</h1>
+            <p class="lead mb-4">Advanced search engine and collaborative filtering system for Amazon products</p>
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card stats-card h-100 border-0">
+                        <div class="card-body text-center">
+                            <h3 id="total-products">-</h3>
+                            <p class="mb-0">Products</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stats-card h-100 border-0">
+                        <div class="card-body text-center">
+                            <h3 id="total-users">-</h3>
+                            <p class="mb-0">Users</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stats-card h-100 border-0">
+                        <div class="card-body text-center">
+                            <h3 id="total-ratings">-</h3>
+                            <p class="mb-0">Ratings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <h2 class="fw-bold">System Features</h2>
+                    <p class="text-muted">Explore our advanced analytics and recommendation capabilities</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Search Engine -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-search fa-3x text-primary"></i>
+                            </div>
+                            <h5 class="card-title">Advanced Search Engine</h5>
+                            <p class="card-text">Complex query support with operators (>, >=, =, <, <=) for product attributes</p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-check text-success me-2"></i>Best n sellers by category</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Filter by price, rating, reviews</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Text search across products</li>
+                            </ul>
+                            <a href="/search" class="btn btn-primary">Try Search</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommender System -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-robot fa-3x text-success"></i>
+                            </div>
+                            <h5 class="card-title">Collaborative Filtering</h5>
+                            <p class="card-text">AI-powered recommendations based on user behavior and preferences</p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-check text-success me-2"></i>User-based recommendations</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Item-based recommendations</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Co-purchasing analysis</li>
+                            </ul>
+                            <a href="/recommendations" class="btn btn-success">Get Recommendations</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100 border-0 shadow">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-chart-bar fa-3x text-info"></i>
+                            </div>
+                            <h5 class="card-title">Data Analytics</h5>
+                            <p class="card-text">Comprehensive analytics engine for product and user insights</p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-check text-success me-2"></i>Category statistics</li>
+                                <li><i class="fas fa-check text-success me-2"></i>User behavior analysis</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Market trends</li>
+                            </ul>
+                            <a href="/analytics" class="btn btn-info">View Analytics</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <h2 class="fw-bold">Technology Stack</h2>
+                    <p class="text-muted">Built with modern big data and machine learning technologies</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6 text-center">
+                    <i class="fab fa-python fa-3x text-primary mb-3"></i>
+                    <h6>Python</h6>
+                    <small class="text-muted">Core development language</small>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <i class="fas fa-fire fa-3x text-warning mb-3"></i>
+                    <h6>Apache Spark</h6>
+                    <small class="text-muted">Big data processing</small>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <i class="fas fa-brain fa-3x text-success mb-3"></i>
+                    <h6>Scikit-learn</h6>
+                    <small class="text-muted">Machine learning algorithms</small>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <i class="fas fa-globe fa-3x text-info mb-3"></i>
+                    <h6>Flask</h6>
+                    <small class="text-muted">Web framework</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Amazon Recommender System - Big Data Course Project</p>
+            <p class="mb-0"><small>Built by Syam Gudipudi</small></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Load system statistics
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+                
+                document.getElementById('total-products').textContent = stats.total_products?.toLocaleString() || '-';
+                document.getElementById('total-users').textContent = stats.total_users?.toLocaleString() || '-';
+                document.getElementById('total-ratings').textContent = stats.total_ratings?.toLocaleString() || '-';
+                
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Load stats on page load
+        document.addEventListener('DOMContentLoaded', loadStats);
+    </script>
+</body>
+</html>
