@@ -38,6 +38,17 @@
             font-size: 0.9rem;
             opacity: 0.8;
         }
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .progress-custom {
+            height: 8px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -91,7 +102,7 @@
             <div class="col-md-3">
                 <div class="card stat-card text-center p-4">
                     <div class="metric-value" id="total-ratings-metric">-</div>
-                    <div class="metric-label">Total Ratings</div>
+                    <div class="metric-label">Total Reviews</div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -103,16 +114,14 @@
         </div>
     </div>
 
-    <!-- Analytics Charts -->
+    <!-- Charts Section -->
     <div class="container mt-5">
         <div class="row g-4">
             <!-- Category Distribution -->
-            <div class="col-lg-6">
-                <div class="card analytics-card h-100">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-chart-pie me-2"></i>Category Distribution
-                        </h5>
+            <div class="col-md-6">
+                <div class="card analytics-card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Product Categories</h5>
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
@@ -123,12 +132,10 @@
             </div>
 
             <!-- Price Distribution -->
-            <div class="col-lg-6">
-                <div class="card analytics-card h-100">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-chart-bar me-2"></i>Price Distribution
-                        </h5>
+            <div class="col-md-6">
+                <div class="card analytics-card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-dollar-sign me-2"></i>Price Distribution</h5>
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
@@ -137,14 +144,15 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+        <!-- Second Row: Rating Distribution -->
+        <div class="row g-4 mt-3">
             <!-- Rating Distribution -->
-            <div class="col-lg-6">
-                <div class="card analytics-card h-100">
-                    <div class="card-header bg-warning text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-star me-2"></i>Rating Distribution
-                        </h5>
+            <div class="col-md-12">
+                <div class="card analytics-card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-star me-2"></i>Rating Distribution</h5>
                     </div>
                     <div class="card-body">
                         <div class="chart-container">
@@ -153,386 +161,316 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- User Activity -->
-            <div class="col-lg-6">
-                <div class="card analytics-card h-100">
-                    <div class="card-header bg-info text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-users me-2"></i>User Activity Levels
-                        </h5>
+    <!-- Detailed Analytics -->
+    <div class="container mt-5 mb-5">
+        <div class="row g-4">
+            <!-- Top Categories List -->
+            <div class="col-md-6">
+                <div class="card analytics-card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-list me-2"></i>Top Categories</h5>
                     </div>
                     <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="userActivityChart"></canvas>
+                        <div id="top-categories-list">
+                            <div class="loading">
+                                <div class="spinner-border text-primary" role="status"></div>
+                                <p class="mt-2">Loading categories...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Engagement -->
+            <div class="col-md-6">
+                <div class="card analytics-card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-users me-2"></i>User Engagement</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="user-metrics">
+                            <div class="loading">
+                                <div class="spinner-border text-primary" role="status"></div>
+                                <p class="mt-2">Loading user data...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Market Insights -->
-        <div class="row mt-4">
+        <!-- System Metrics -->
+        <div class="row g-4 mt-3">
             <div class="col-12">
                 <div class="card analytics-card">
-                    <div class="card-header bg-dark text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-lightbulb me-2"></i>Market Insights & Trends
-                        </h5>
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-server me-2"></i>System Metrics</h5>
                     </div>
                     <div class="card-body">
-                        <div class="row" id="market-insights">
-                            <div class="col-md-6">
-                                <h6><i class="fas fa-trophy text-warning me-2"></i>Top Performing Categories</h6>
-                                <div id="top-categories" class="mb-4">
-                                    <div class="loading">
-                                        <div class="spinner-border" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <div class="border-end">
+                                    <h4 class="text-primary" id="data-sparsity">-</h4>
+                                    <small class="text-muted">Data Sparsity</small>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <h6><i class="fas fa-dollar-sign text-success me-2"></i>Price Analysis</h6>
-                                <div id="price-insights" class="mb-4">
-                                    <div class="loading">
-                                        <div class="spinner-border" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
+                            <div class="col-md-3">
+                                <div class="border-end">
+                                    <h4 class="text-success" id="coverage-rate">-</h4>
+                                    <small class="text-muted">Coverage Rate</small>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="row mt-4">
-                            <div class="col-md-6">
-                                <h6><i class="fas fa-chart-line text-primary me-2"></i>User Engagement</h6>
-                                <div id="user-insights" class="mb-4">
-                                    <div class="loading">
-                                        <div class="spinner-border" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
+                            <div class="col-md-3">
+                                <div class="border-end">
+                                    <h4 class="text-warning" id="memory-usage">-</h4>
+                                    <small class="text-muted">Memory Usage</small>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <h6><i class="fas fa-cog text-secondary me-2"></i>System Performance</h6>
-                                <div id="system-insights" class="mb-4">
-                                    <div class="loading">
-                                        <div class="spinner-border" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-md-3">
+                                <h4 class="text-info" id="dataset-size">-</h4>
+                                <small class="text-muted">Dataset Size</small>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Export and Actions -->
-        <div class="row mt-4 mb-5">
-            <div class="col-12 text-center">
-                <div class="card analytics-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Export Analytics</h5>
-                        <p class="card-text">Download comprehensive analytics reports and data visualizations</p>
-                        <button class="btn btn-primary me-2" onclick="exportToPDF()">
-                            <i class="fas fa-file-pdf me-2"></i>Export to PDF
-                        </button>
-                        <button class="btn btn-success me-2" onclick="exportToCSV()">
-                            <i class="fas fa-file-csv me-2"></i>Export Data
-                        </button>
-                        <button class="btn btn-info" onclick="refreshAnalytics()">
-                            <i class="fas fa-sync me-2"></i>Refresh Data
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        let charts = {};
-
-        // Initialize analytics dashboard
-        document.addEventListener('DOMContentLoaded', function() {
-            loadAnalytics();
-        });
-
-        async function loadAnalytics() {
-            try {
-                // Load basic stats
-                await loadBasicStats();
-                
-                // Load analytics data
-                await loadAnalyticsData();
-                
-            } catch (error) {
-                console.error('Error loading analytics:', error);
-                showError('Failed to load analytics data');
-            }
-        }
-
-        async function loadBasicStats() {
-            try {
-                const response = await fetch('/api/stats');
-                const stats = await response.json();
-                
-                if (stats.error) {
-                    throw new Error(stats.error);
-                }
-                
-                document.getElementById('total-products-metric').textContent = stats.total_products?.toLocaleString() || '-';
-                document.getElementById('total-users-metric').textContent = stats.total_users?.toLocaleString() || '-';
-                document.getElementById('total-ratings-metric').textContent = stats.total_ratings?.toLocaleString() || '-';
-                document.getElementById('avg-rating-metric').textContent = stats.avg_rating?.toFixed(2) || '-';
-                
-            } catch (error) {
-                console.error('Error loading stats:', error);
-                showError('Failed to load basic statistics');
-            }
-        }
+        let categoryChart, ratingChart, priceChart;
 
         async function loadAnalyticsData() {
             try {
-                // Simulate analytics data (in real implementation, this would come from API)
-                createCategoryChart();
-                createPriceChart();
-                createRatingChart();
-                createUserActivityChart();
-                loadMarketInsights();
-                
+                // Load comprehensive analytics data
+                const response = await fetch('/api/analytics');
+                const data = await response.json();
+
+                if (response.ok) {
+                    updateMetrics(data);
+                    updateCharts(data);
+                    updateCategoriesList(data.top_categories);
+                    updateUserMetrics(data.user_metrics);
+                    updateSystemMetrics(data.system_metrics);
+                } else {
+                    console.error('Failed to load analytics data:', data.error);
+                    showError('Failed to load analytics data');
+                }
             } catch (error) {
                 console.error('Error loading analytics data:', error);
-                showError('Failed to load analytics charts');
+                showError('Connection error while loading analytics data');
             }
         }
 
-        function createCategoryChart() {
-            const ctx = document.getElementById('categoryChart').getContext('2d');
-            
-            // Sample data - in real implementation, this would come from API
-            const data = {
-                labels: ['Books', 'Electronics', 'Home & Kitchen', 'Sports & Outdoors', 'Toys & Games', 'Health & Personal Care', 'Clothing'],
-                datasets: [{
-                    data: [25, 20, 18, 12, 10, 8, 7],
-                    backgroundColor: [
-                        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 
-                        '#9966FF', '#FF9F40', '#FF6384'
-                    ],
-                    borderWidth: 0
-                }]
-            };
+        function updateMetrics(data) {
+            document.getElementById('total-products-metric').textContent = formatNumber(data.product_metrics.total_products);
+            document.getElementById('total-users-metric').textContent = formatNumber(data.user_metrics.total_users);
+            document.getElementById('total-ratings-metric').textContent = formatNumber(data.user_metrics.total_reviews);
+            document.getElementById('avg-rating-metric').textContent = data.product_metrics.avg_rating.toFixed(1);
+        }
 
-            charts.categoryChart = new Chart(ctx, {
+        function updateCharts(data) {
+            // Category Distribution Chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            if (categoryChart) categoryChart.destroy();
+            
+            categoryChart = new Chart(categoryCtx, {
                 type: 'doughnut',
-                data: data,
+                data: {
+                    labels: data.top_categories.map(cat => cat.name),
+                    datasets: [{
+                        data: data.top_categories.map(cat => cat.count),
+                        backgroundColor: [
+                            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+                            '#9966FF', '#FF9F40', '#FF6B9D'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'bottom'
+                            position: 'bottom',
+                            labels: { 
+                                padding: 15,
+                                usePointStyle: true,
+                                font: { size: 12 }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed * 100) / total).toFixed(1);
+                                    return context.label + ': ' + context.parsed.toLocaleString() + 
+                                           ' (' + percentage + '%)';
+                                }
+                            }
                         }
                     }
                 }
             });
-        }
 
-        function createPriceChart() {
-            const ctx = document.getElementById('priceChart').getContext('2d');
+            // Price Distribution Chart
+            const priceCtx = document.getElementById('priceChart').getContext('2d');
+            if (priceChart) priceChart.destroy();
             
-            const data = {
-                labels: ['$0-25', '$25-50', '$50-75', '$75-100', '$100-150', '$150+'],
-                datasets: [{
-                    label: 'Number of Products',
-                    data: [1200, 1800, 1500, 800, 600, 275],
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 2
-                }]
-            };
-
-            charts.priceChart = new Chart(ctx, {
+            priceChart = new Chart(priceCtx, {
                 type: 'bar',
-                data: data,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-
-        function createRatingChart() {
-            const ctx = document.getElementById('ratingChart').getContext('2d');
-            
-            const data = {
-                labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
-                datasets: [{
-                    label: 'Rating Distribution',
-                    data: [2500, 4200, 8500, 15800, 7000],
-                    backgroundColor: [
-                        '#FF6B6B', '#FFA726', '#FFEB3B', '#66BB6A', '#4CAF50'
-                    ],
-                    borderWidth: 0
-                }]
-            };
-
-            charts.ratingChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-
-        function createUserActivityChart() {
-            const ctx = document.getElementById('userActivityChart').getContext('2d');
-            
-            const data = {
-                labels: ['Low Activity\n(1-5 ratings)', 'Medium Activity\n(6-15 ratings)', 'High Activity\n(16-30 ratings)', 'Very High Activity\n(30+ ratings)'],
-                datasets: [{
-                    label: 'Number of Users',
-                    data: [500, 900, 500, 100],
-                    backgroundColor: [
-                        '#FF9800', '#2196F3', '#4CAF50', '#9C27B0'
-                    ],
-                    borderWidth: 0
-                }]
-            };
-
-            charts.userActivityChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: data,
+                data: {
+                    labels: data.price_distribution.map(price => price.range),
+                    datasets: [{
+                        label: 'Number of Products',
+                        data: data.price_distribution.map(price => price.count),
+                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            position: 'bottom'
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatNumber(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Rating Distribution Chart
+            const ratingCtx = document.getElementById('ratingChart').getContext('2d');
+            if (ratingChart) ratingChart.destroy();
+            
+            ratingChart = new Chart(ratingCtx, {
+                type: 'bar',
+                data: {
+                    labels: data.rating_distribution.map(rating => `${rating.rating} Stars`),
+                    datasets: [{
+                        label: 'Number of Reviews',
+                        data: data.rating_distribution.map(rating => rating.count),
+                        backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatNumber(value);
+                                }
+                            }
                         }
                     }
                 }
             });
         }
 
-        function loadMarketInsights() {
-            // Top Categories
-            const topCategoriesHtml = `
-                <div class="list-group">
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                        Books <span class="badge bg-primary rounded-pill">25%</span>
+        function updateCategoriesList(categories) {
+            const container = document.getElementById('top-categories-list');
+            const total = categories.reduce((sum, cat) => sum + cat.count, 0);
+            
+            container.innerHTML = categories.slice(0, 10).map((category, index) => {
+                const percentage = ((category.count / total) * 100).toFixed(1);
+                return `
+                    <div class="category-item">
+                        <div>
+                            <span class="fw-bold">${index + 1}. ${category.name}</span>
+                            <div class="text-muted small">${formatNumber(category.count)} products</div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-primary">${percentage}%</span>
+                        </div>
                     </div>
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                        Electronics <span class="badge bg-primary rounded-pill">20%</span>
+                `;
+            }).join('');
+        }
+
+        function updateUserMetrics(userMetrics) {
+            const container = document.getElementById('user-metrics');
+            container.innerHTML = `
+                <div class="row text-center">
+                    <div class="col-6">
+                        <h4 class="text-primary">${formatNumber(userMetrics.total_users)}</h4>
+                        <small class="text-muted">Total Users</small>
                     </div>
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                        Home & Kitchen <span class="badge bg-primary rounded-pill">18%</span>
+                    <div class="col-6">
+                        <h4 class="text-success">${userMetrics.avg_reviews_per_user}</h4>
+                        <small class="text-muted">Avg Reviews/User</small>
+                    </div>
+                </div>
+                <hr class="my-3">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <h4 class="text-warning">${formatNumber(userMetrics.total_reviews)}</h4>
+                        <small class="text-muted">Total Reviews</small>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-info">${userMetrics.coverage_rate}%</h4>
+                        <small class="text-muted">Coverage Rate</small>
                     </div>
                 </div>
             `;
-            document.getElementById('top-categories').innerHTML = topCategoriesHtml;
-
-            // Price Insights
-            const priceInsightsHtml = `
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-arrow-up text-success me-2"></i>Average price: <strong>$52.30</strong></li>
-                    <li><i class="fas fa-dollar-sign text-warning me-2"></i>Most common range: <strong>$25-50</strong></li>
-                    <li><i class="fas fa-chart-line text-info me-2"></i>Electronics highest avg: <strong>$87.34</strong></li>
-                    <li><i class="fas fa-tag text-primary me-2"></i>Books most affordable: <strong>$24.67</strong></li>
-                </ul>
-            `;
-            document.getElementById('price-insights').innerHTML = priceInsightsHtml;
-
-            // User Insights
-            const userInsightsHtml = `
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-users text-success me-2"></i>Active users: <strong>2,000</strong></li>
-                    <li><i class="fas fa-star text-warning me-2"></i>Avg ratings per user: <strong>18.5</strong></li>
-                    <li><i class="fas fa-heart text-danger me-2"></i>Engagement rate: <strong>85%</strong></li>
-                    <li><i class="fas fa-clock text-info me-2"></i>Daily active users: <strong>1,200</strong></li>
-                </ul>
-            `;
-            document.getElementById('user-insights').innerHTML = userInsightsHtml;
-
-            // System Insights
-            const systemInsightsHtml = `
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-tachometer-alt text-success me-2"></i>Avg response time: <strong>134ms</strong></li>
-                    <li><i class="fas fa-database text-primary me-2"></i>Data sparsity: <strong>99.67%</strong></li>
-                    <li><i class="fas fa-check-circle text-success me-2"></i>System uptime: <strong>99.9%</strong></li>
-                    <li><i class="fas fa-memory text-info me-2"></i>Memory usage: <strong>100MB</strong></li>
-                </ul>
-            `;
-            document.getElementById('system-insights').innerHTML = systemInsightsHtml;
         }
 
-        function refreshAnalytics() {
-            // Destroy existing charts
-            Object.values(charts).forEach(chart => chart.destroy());
-            charts = {};
-            
-            // Reload analytics
-            loadAnalytics();
-            
-            // Show success message
-            showSuccess('Analytics data refreshed successfully!');
+        function updateSystemMetrics(systemMetrics) {
+            document.getElementById('data-sparsity').textContent = systemMetrics.data_sparsity + '%';
+            document.getElementById('coverage-rate').textContent = '85%'; // Sample value
+            document.getElementById('memory-usage').textContent = systemMetrics.memory_usage;
+            document.getElementById('dataset-size').textContent = systemMetrics.dataset_size;
         }
 
-        function exportToPDF() {
-            showInfo('PDF export functionality would be implemented here');
-        }
-
-        function exportToCSV() {
-            showInfo('CSV export functionality would be implemented here');
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
         }
 
         function showError(message) {
-            showAlert(message, 'danger');
-        }
-
-        function showSuccess(message) {
-            showAlert(message, 'success');
-        }
-
-        function showInfo(message) {
-            showAlert(message, 'info');
-        }
-
-        function showAlert(message, type) {
-            const alertDiv = document.createElement('div');
-            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
-            alertDiv.style.top = '20px';
-            alertDiv.style.right = '20px';
-            alertDiv.style.zIndex = '9999';
-            alertDiv.innerHTML = `
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            const alertHtml = `
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
             `;
-            document.body.appendChild(alertDiv);
-
-            // Auto remove after 3 seconds
-            setTimeout(() => {
-                if (alertDiv.parentNode) {
-                    alertDiv.remove();
-                }
-            }, 3000);
+            document.querySelector('.container').insertAdjacentHTML('afterbegin', alertHtml);
         }
+
+        // Initialize analytics dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAnalyticsData();
+            
+            // Auto-refresh every 5 minutes
+            setInterval(loadAnalyticsData, 300000);
+        });
     </script>
 </body>
 </html>

@@ -16,15 +16,15 @@ for dir_path in [RAW_DATA_DIR, PROCESSED_DATA_DIR, MODELS_DIR]:
     dir_path.mkdir(parents=True, exist_ok=True)
 
 # Dataset configuration
-# Note: For development, we'll use smaller sample datasets
-SAMPLE_PRODUCTS_URL = "https://raw.githubusercontent.com/datasets/amazon-products/master/data/amazon_products_sample.csv"
-SAMPLE_RATINGS_URL = "https://raw.githubusercontent.com/caserec/Datasets-for-Recommender-Systems/master/Amazon%20Product%20Data/ratings_Books.csv"
+# Stanford SNAP Amazon product co-purchasing network metadata
+AMAZON_META_URL = "http://snap.stanford.edu/data/bigdata/amazon/amazon-meta.txt.gz"
 
 # Local file paths
-SAMPLE_PRODUCTS_FILE = RAW_DATA_DIR / "amazon_products_sample.csv"
-SAMPLE_RATINGS_FILE = RAW_DATA_DIR / "ratings_books.csv"
-PROCESSED_PRODUCTS_FILE = PROCESSED_DATA_DIR / "products.parquet"
-PROCESSED_RATINGS_FILE = PROCESSED_DATA_DIR / "ratings.parquet"
+AMAZON_META_FILE = RAW_DATA_DIR / "amazon-meta.txt.gz"
+AMAZON_META_EXTRACTED = RAW_DATA_DIR / "amazon-meta.txt"
+PROCESSED_PRODUCTS_FILE = PROCESSED_DATA_DIR / "amazon_products.csv"
+PROCESSED_REVIEWS_FILE = PROCESSED_DATA_DIR / "amazon_reviews.csv"
+
 
 # Spark configuration
 SPARK_CONFIG = {

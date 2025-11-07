@@ -1,5 +1,32 @@
 
+# Development files
+demo_*.py
+test_*.py
+show_*.py
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Ignore large dataset files  
+data/raw/
+data/processed/
+
+# Temporary and system files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# Documentation screenshots
+*.png
+*.jpg
+*.jpeg
+*.gif
+SEARCH_RESULTS_VERIFICATION.md
+
+# Resume and personal files
+*Resume.md
+*resume.md

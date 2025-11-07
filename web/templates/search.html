@@ -90,49 +90,6 @@
                         </select>
                     </div>
 
-                    <!-- Price Range -->
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="minPrice" class="form-label">Min Price ($)</label>
-                            <input type="number" class="form-control" id="minPrice" placeholder="0" min="0" step="0.01">
-                        </div>
-                        <div class="col-6">
-                            <label for="maxPrice" class="form-label">Max Price ($)</label>
-                            <input type="number" class="form-control" id="maxPrice" placeholder="1000" min="0" step="0.01">
-                        </div>
-                    </div>
-
-                    <!-- Rating -->
-                    <div class="mb-3">
-                        <label for="minRating" class="form-label">Minimum Rating</label>
-                        <select class="form-select" id="minRating">
-                            <option value="">Any Rating</option>
-                            <option value="1">⭐ 1+ Stars</option>
-                            <option value="2">⭐⭐ 2+ Stars</option>
-                            <option value="3">⭐⭐⭐ 3+ Stars</option>
-                            <option value="4">⭐⭐⭐⭐ 4+ Stars</option>
-                            <option value="4.5">⭐⭐⭐⭐⭐ 4.5+ Stars</option>
-                        </select>
-                    </div>
-
-                    <!-- Brand -->
-                    <div class="mb-3">
-                        <label for="brand" class="form-label">Brand</label>
-                        <input type="text" class="form-control" id="brand" placeholder="Enter brand name">
-                    </div>
-
-                    <!-- Sort Options -->
-                    <div class="mb-3">
-                        <label for="sortBy" class="form-label">Sort By</label>
-                        <select class="form-select" id="sortBy">
-                            <option value="">Relevance</option>
-                            <option value="price">Price</option>
-                            <option value="avg_rating">Rating</option>
-                            <option value="num_reviews">Number of Reviews</option>
-                            <option value="title">Product Name</option>
-                        </select>
-                    </div>
-
                     <!-- Limit -->
                     <div class="mb-3">
                         <label for="resultLimit" class="form-label">Results Limit</label>
@@ -191,7 +148,7 @@
                     <div class="text-center text-muted py-5">
                         <i class="fas fa-search fa-3x mb-3"></i>
                         <p>Use the filters on the left to search for products</p>
-                        <p><small>Try searching for categories like "Books", "Electronics", or set price ranges</small></p>
+                        <p><small>Try searching for categories like "Books", "Electronics", or "DVDs"</small></p>
                     </div>
                 </div>
             </div>
@@ -213,11 +170,14 @@
                 const categorySelect = document.getElementById('category');
                 const bestSellerSelect = document.getElementById('bestSellerCategory');
                 
-                data.categories.forEach(category => {
-                    const option1 = new Option(category, category);
-                    const option2 = new Option(category, category);
+                data.categories.forEach(categoryInfo => {
+                    const displayName = `${categoryInfo.name} (${categoryInfo.count.toLocaleString()})`;
+                    const option1 = new Option(displayName, categoryInfo.name);
+                    const option2 = new Option(displayName, categoryInfo.name);
                     categorySelect.add(option1);
-                    bestSellerSelect.add(option2);
+                    if (bestSellerSelect) {
+                        bestSellerSelect.add(option2);
+                    }
                 });
             } catch (error) {
                 console.error('Error loading categories:', error);
@@ -237,11 +197,6 @@
                 const searchData = {
                     query: document.getElementById('searchText').value,
                     category: document.getElementById('category').value,
-                    min_price: document.getElementById('minPrice').value,
-                    max_price: document.getElementById('maxPrice').value,
-                    min_rating: document.getElementById('minRating').value,
-                    brand: document.getElementById('brand').value,
-                    sort_by: document.getElementById('sortBy').value,
                     limit: parseInt(document.getElementById('resultLimit').value)
                 };
 
@@ -340,7 +295,6 @@
                                 <p class="text-muted small">${product.description || 'No description available'}</p>
                             </div>
                             <div class="col-md-4 text-end">
-                                <h5 class="text-success">$${product.price.toFixed(2)}</h5>
                                 <div class="rating-stars mb-1">
                                     ${generateStars(product.avg_rating)} 
                                     <small>(${product.avg_rating.toFixed(1)})</small>
@@ -379,18 +333,13 @@
         function clearFilters() {
             document.getElementById('searchText').value = '';
             document.getElementById('category').value = '';
-            document.getElementById('minPrice').value = '';
-            document.getElementById('maxPrice').value = '';
-            document.getElementById('minRating').value = '';
-            document.getElementById('brand').value = '';
-            document.getElementById('sortBy').value = '';
             document.getElementById('resultLimit').value = '20';
             
             document.getElementById('searchResults').innerHTML = `
                 <div class="text-center text-muted py-5">
                     <i class="fas fa-search fa-3x mb-3"></i>
                     <p>Use the filters on the left to search for products</p>
-                    <p><small>Try searching for categories like "Books", "Electronics", or set price ranges</small></p>
+                    <p><small>Try searching for categories like "Books", "Electronics", or "DVDs"</small></p>
                 </div>
             `;
             document.getElementById('resultsCount').textContent = '0 results';

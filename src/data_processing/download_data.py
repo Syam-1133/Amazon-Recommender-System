@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
 from utils.helpers import download_file, extract_gzip, setup_logging
-from utils.config import AMAZON_METADATA_URL, RAW_DATA_DIR, AMAZON_METADATA_FILE
+from utils.config import AMAZON_META_URL, RAW_DATA_DIR, AMAZON_META_FILE
 
 logger = setup_logging()
 
@@ -19,14 +19,14 @@ def download_amazon_data():
     logger.info("Starting Amazon data download...")
     
     # Download the compressed file
-    success = download_file(AMAZON_METADATA_URL, AMAZON_METADATA_FILE)
+    success = download_file(AMAZON_META_URL, AMAZON_META_FILE)
     
     if success:
         logger.info("Download completed successfully")
         
         # Extract the file
         extracted_file = RAW_DATA_DIR / "amazon-meta.txt"
-        extract_success = extract_gzip(AMAZON_METADATA_FILE, extracted_file)
+        extract_success = extract_gzip(AMAZON_META_FILE, extracted_file)
         
         if extract_success:
             logger.info(f"File extracted to {extracted_file}")
