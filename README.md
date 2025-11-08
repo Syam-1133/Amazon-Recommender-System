@@ -32,7 +32,9 @@
 
 ## 🎯 About The Project
 
-A **state-of-the-art, production-ready Amazon Product Recommendation System** powered by advanced machine learning algorithms and real-world data from Stanford's SNAP dataset. Experience intelligent product discovery through collaborative filtering, content-based recommendations, and hybrid AI techniques.
+A comprehensive data analytics engine for Amazon product data with advanced search capabilities and intelligent recommendation algorithms. This project leverages big data processing, algorithmic computing, and modern web technologies to create a scalable and production-ready recommendation system.
+
+This project implements a sophisticated recommender system using Amazon metadata from the SNAP Stanford dataset, containing over 514K products and 1 million user reviews. The large-scale dataset enables deep insights into customer preferences, product relationships, and personalized recommendations. The system is designed with enterprise-level architecture principles, incorporating microservices design patterns, containerization (Docker), and cloud deployment capabilities (AWS Elastic Beanstalk) to ensure scalability, modularity, and real-world production readiness.
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="700">
@@ -93,10 +95,7 @@ A **state-of-the-art, production-ready Amazon Product Recommendation System** po
   <img src="https://user-images.githubusercontent.com/74038190/225813708-98b745f2-7d22-48cf-9150-083f1b00d6c9.gif" width="500">
 </div>
 
-### 🎨 High-Level Architecture Diagram
-
-<details>
-<summary><b>📊 Click to expand Architecture Diagram</b></summary>
+### 🎨 System Architecture Diagram
 
 ```mermaid
 graph TB
@@ -121,7 +120,7 @@ graph TB
     subgraph "🗄️ STORAGE LAYER"
         J[📄 Raw Data<br/>amazon-meta.txt]
         K[📊 Processed Data<br/>CSV Files]
-        L[🧠 Models<br/>Trained Models<br/>Matrices]
+        L[� Similarity Matrices<br/>Computed Similarities<br/>Cache Storage]
     end
     
     A --> B
@@ -150,8 +149,6 @@ graph TB
     style L fill:#85c1e9
 ```
 
-</details>
-
 ### 💻 Technology Stack
 
 <div align="center">
@@ -159,7 +156,7 @@ graph TB
 | **Category** | **Technologies** |
 |--------------|------------------|
 | **Backend** | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white) |
-| **ML/AI** | ![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white) ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white) |
+| **Algorithms** | ![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white) ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white) |
 | **Frontend** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=flat-square&logo=bootstrap&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) |
 | **DevOps** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) |
 
@@ -208,7 +205,6 @@ graph TB
 │   └── 📊 processed/               # Cleaned and processed data
 │
 ├── 🧪 tests/                        # Test suites
-├── 🧠 models/                       # Saved models and matrices
 ├── 📜 logs/                         # Application logs
 ├── 🐳 Dockerfile                    # Container configuration
 └── ⚙️ Configuration Files
@@ -429,19 +425,30 @@ def process_query(self, query_params):
 
 ### 🔄 Data Processing Pipeline
 
+<div align="center">
+
 ```mermaid
 graph LR
-    A[📥 Data Download] --> B[🔍 Parsing]
-    B --> C[🧹 Cleaning]
-    C --> D[⚙️ Feature Engineering]
-    D --> E[📊 Export to CSV]
+    A[📥 Data Download<br/>Stanford SNAP] --> B[🔍 Parsing<br/>Amazon Metadata]
+    B --> C[🧹 Data Cleaning<br/>Validation & Normalization]
+    C --> D[⚙️ Feature Engineering<br/>Derived Features]
+    D --> E[📊 Export to CSV<br/>Structured Storage]
     
-    style A fill:#ff9999
-    style B fill:#66b3ff
-    style C fill:#99ff99
-    style D fill:#ffcc99
-    style E fill:#ff99cc
+    style A fill:#ff6b6b,stroke:#333,stroke-width:3px,color:#fff
+    style B fill:#4ecdc4,stroke:#333,stroke-width:3px,color:#fff
+    style C fill:#45b7d1,stroke:#333,stroke-width:3px,color:#fff
+    style D fill:#96ceb4,stroke:#333,stroke-width:3px,color:#fff
+    style E fill:#feca57,stroke:#333,stroke-width:3px,color:#fff
 ```
+
+**Pipeline Steps:**
+1. **📥 Data Download**: Automated retrieval from Stanford SNAP Amazon dataset
+2. **🔍 Parsing**: Custom parser for Amazon metadata format processing
+3. **🧹 Data Cleaning**: Validation, normalization, and quality checks
+4. **⚙️ Feature Engineering**: Creation of derived features for recommendations
+5. **📊 Export**: Generation of structured CSV files for efficient access
+
+</div>
 
 <details>
 <summary><b>📋 Data Schema Details</b></summary>
@@ -650,26 +657,7 @@ eb deploy
 
 </div>
 
-## 🔒 Security & Best Practices
-
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/74038190/212257454-16e3712e-945a-4ca2-b238-408ad0bf87e6.gif" width="100">
-</div>
-
-### 🛡️ Security Features
-
-<div align="center">
-
-| **Security Layer** | **Implementation** | **Protection** |
-|-------------------|-------------------|----------------|
-| 🔍 **Input Validation** | ![Implemented](https://img.shields.io/badge/Implemented-brightgreen?style=flat-square) | SQL injection, XSS prevention |
-| ⚡ **Rate Limiting** | ![Configured](https://img.shields.io/badge/Configured-green?style=flat-square) | API request throttling |
-| 🛠️ **Error Handling** | ![Secure](https://img.shields.io/badge/Secure-blue?style=flat-square) | Safe error messages |
-| 🌐 **CORS** | ![Controlled](https://img.shields.io/badge/Controlled-orange?style=flat-square) | Cross-origin access management |
-
-</div>
-
-## 🐛 Troubleshooting Guide
+##  Troubleshooting Guide
 
 <details>
 <summary><b>🔧 Common Issues & Solutions</b></summary>
@@ -782,7 +770,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
   </a>
 </p>
 
-**Passionate Data Scientist & ML Engineer**  
+**Passionate Data Scientist & Software Engineer**  
 *Building intelligent systems that make a difference* ✨
 
 </div>
@@ -795,7 +783,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 🎓 **Stanford SNAP** - For providing the comprehensive Amazon dataset  
 🌐 **Flask Community** - For the robust web framework  
-🤖 **Scikit-learn** - For powerful machine learning algorithms  
+🤖 **Scikit-learn** - For mathematical algorithms and similarity computations  
 🎨 **Bootstrap** - For beautiful, responsive UI components  
 🐍 **Python Community** - For the amazing ecosystem
 
@@ -823,9 +811,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
   
-  <h3>🛍️ Built with ❤️ for Big Data Course Project</h3>
+  <h3>🛍️ Built with ❤️ by Syam Gudipudi</h3>
   
-  <p><em>This project demonstrates advanced concepts in machine learning, data processing, and web development, showcasing real-world application of recommendation systems in e-commerce.</em></p>
+  <p><em>This project demonstrates advanced concepts in algorithmic computing, data processing, and web development, showcasing real-world application of recommendation systems in e-commerce.</em></p>
   
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&width=600&lines=⭐+Star+this+repo+if+you+found+it+helpful!;🍴+Fork+and+contribute+to+make+it+better!;📢+Share+with+your+network!" alt="Footer Typing SVG" />
   
