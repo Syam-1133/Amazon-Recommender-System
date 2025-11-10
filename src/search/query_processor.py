@@ -51,14 +51,18 @@ class QueryProcessor:
     # Mapping of field names to their data types
     FIELD_TYPES = {
         'price': 'float',
+        'rating': 'float',  # Allow 'rating' as alias for 'avg_rating'
         'avg_rating': 'float',
         'num_reviews': 'int',
+        'total_reviews': 'int',  # Allow 'total_reviews' as alias for 'num_reviews'
         'sales_rank': 'int',
+        'salesrank': 'int',  # Allow 'salesrank' as alias
         'category': 'string',
         'brand': 'string',
         'title': 'string',
         'description': 'string',
-        'price_range': 'string'
+        'price_range': 'string',
+        'group': 'string'  # Allow 'group' as alias for 'category'
     }
     
     # Valid sortable fields

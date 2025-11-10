@@ -196,9 +196,9 @@
                 const response = await fetch('/api/stats');
                 const stats = await response.json();
                 
-                document.getElementById('total-products').textContent = stats.total_products?.toLocaleString() || '-';
-                document.getElementById('total-users').textContent = stats.total_users?.toLocaleString() || '-';
-                document.getElementById('total-ratings').textContent = stats.total_ratings?.toLocaleString() || '-';
+                document.getElementById('total-products').textContent = stats.total_products_formatted || '-';
+                document.getElementById('total-users').textContent = stats.total_users_formatted || '-';
+                document.getElementById('total-ratings').textContent = stats.total_ratings_formatted || '-';
                 
             } catch (error) {
                 console.error('Error loading stats:', error);
