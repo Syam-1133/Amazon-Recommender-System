@@ -62,3 +62,8 @@
 2025-11-12 22:56:00,507 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:56:00] "GET /api/stats HTTP/1.1" 200 -
 2025-11-12 22:56:03,988 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:56:03] "GET /analytics HTTP/1.1" 200 -
 2025-11-12 22:56:10,255 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:56:10] "GET /api/analytics HTTP/1.1" 200 -
+2025-11-12 23:01:09,944 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 23:01:09] "GET /api/analytics HTTP/1.1" 200 -
+2025-11-12 23:06:10,075 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 23:06:10] "GET /api/analytics HTTP/1.1" 200 -
+2025-11-12 23:10:12,234 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 23:10:12] "GET / HTTP/1.1" 200 -
+2025-11-12 23:10:13,782 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 23:10:13] "GET /api/stats HTTP/1.1" 200 -
+2025-11-12 23:11:09,574 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 23:11:09] "GET /api/analytics HTTP/1.1" 200 -
