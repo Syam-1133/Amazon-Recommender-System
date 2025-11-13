@@ -2,6 +2,10 @@ branch-defaults:
   main:
     environment: amazon-prod
     group_suffix: null
+environment-defaults:
+  amazon-prod:
+    branch: null
+    repository: null
 global:
   application_name: amazon
   branch: null
