@@ -36,3 +36,29 @@
 2025-11-12 22:07:31,894 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:07:31] "GET /search HTTP/1.1" 200 -
 2025-11-12 22:07:32,001 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:07:32] "GET /api/categories HTTP/1.1" 200 -
 2025-11-12 22:07:34,151 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:07:34] "POST /api/search HTTP/1.1" 200 -
+2025-11-12 22:54:39,688 - utils.helpers - INFO - Initializing search engine...
+2025-11-12 22:54:39,689 - utils.helpers - INFO - Starting load_data
+2025-11-12 22:54:52,236 - utils.helpers - INFO - Loaded 548,552 products
+2025-11-12 22:54:52,237 - utils.helpers - INFO - Loaded 7,593,244 reviews
+2025-11-12 22:54:52,237 - utils.helpers - INFO - Loaded 2,509,699 category entries
+2025-11-12 22:54:52,237 - utils.helpers - INFO - Loaded 1,788,725 similar product relationships
+2025-11-12 22:54:54,023 - utils.helpers - INFO - Search indices prepared successfully
+2025-11-12 22:54:54,027 - utils.helpers - INFO - Completed load_data in 14.34 seconds
+2025-11-12 22:54:54,028 - utils.helpers - INFO - Initializing recommendation system...
+2025-11-12 22:54:54,028 - utils.helpers - INFO - Starting load_data
+2025-11-12 22:55:03,500 - utils.helpers - INFO - Loaded 548,552 products
+2025-11-12 22:55:03,506 - utils.helpers - INFO - Loaded 7,593,244 reviews
+2025-11-12 22:55:03,506 - utils.helpers - INFO - Loaded 1,788,725 similar product relationships
+2025-11-12 22:55:03,506 - utils.helpers - INFO - Using sample of 100,000 reviews for demo
+2025-11-12 22:55:04,607 - utils.helpers - INFO - Created user-item matrix: 820 users × 2741 items
+2025-11-12 22:55:47,798 - utils.helpers - INFO - Created similarity mappings for 379093 products
+2025-11-12 22:55:47,903 - utils.helpers - INFO - Recommendation data prepared successfully
+2025-11-12 22:55:47,904 - utils.helpers - INFO - Completed load_data in 53.88 seconds
+2025-11-12 22:55:47,904 - utils.helpers - INFO - ✅ Systems initialized successfully
+2025-11-12 22:55:47,944 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-12 22:55:47,944 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-12 22:55:59,044 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:55:59] "GET / HTTP/1.1" 200 -
+2025-11-12 22:56:00,507 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:56:00] "GET /api/stats HTTP/1.1" 200 -
+2025-11-12 22:56:03,988 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:56:03] "GET /analytics HTTP/1.1" 200 -
+2025-11-12 22:56:10,255 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:56:10] "GET /api/analytics HTTP/1.1" 200 -
