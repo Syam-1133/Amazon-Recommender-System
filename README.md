@@ -34,7 +34,7 @@
 
 A comprehensive data analytics engine for Amazon product data with advanced search capabilities and intelligent recommendation algorithms. This project leverages big data processing, algorithmic computing, and modern web technologies to create a scalable and production-ready recommendation system.
 
-This project implements a sophisticated recommender system using Amazon metadata from the SNAP Stanford dataset, containing over 514K products and 1 million user reviews. The large-scale dataset enables deep insights into customer preferences, product relationships, and personalized recommendations. The system is designed with enterprise-level architecture principles, incorporating microservices design patterns, containerization (Docker), and cloud deployment capabilities (AWS Elastic Beanstalk) to ensure scalability, modularity, and real-world production readiness.
+This project implements a sophisticated recommender system using Amazon metadata from the SNAP Stanford dataset, containing over 514K products and 7 million user reviews. The large-scale dataset enables deep insights into customer preferences, product relationships, and personalized recommendations. The system is designed with enterprise-level architecture principles, incorporating microservices design patterns, containerization (Docker), and cloud deployment capabilities (AWS Elastic Beanstalk) to ensure scalability, modularity, and real-world production readiness.
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="700">
@@ -106,21 +106,21 @@ graph TB
     end
     
     subgraph "⚙️ APPLICATION LAYER"
-        D[🔍 Search Engine<br/>• Query Processing<br/>• Math Operations<br/>• Fuzzy Search]
-        E[🤖 Recommender<br/>• Collaborative Filter<br/>• Content Based<br/>• Hybrid Model]
-        F[📊 Performance<br/>• Metrics<br/>• Monitoring<br/>• Analytics]
+        D[🔍 Search Engine<br/>Query Processing + Fuzzy Search]
+        E[🤖 Recommender<br/>Collaborative + Content Filtering]
+        F[📊 Performance<br/>Metrics & Monitoring]
     end
     
     subgraph "💾 DATA LAYER"
-        G[📥 Data Parser<br/>• SNAP Parser<br/>• CSV Export<br/>• Data Cleaning]
-        H[🧮 Similarity<br/>• Cosine Similarity<br/>• Pearson Correlation<br/>• Jaccard Index]
-        I[🛠️ Utilities<br/>• Logging<br/>• Config Management<br/>• Helper Functions]
+        G[📥 Data Parser<br/>SNAP Dataset Processing]
+        H[🧮 Similarity<br/>Cosine + Pearson + Jaccard]
+        I[🛠️ Utilities<br/>Config + Logging + Helpers]
     end
     
     subgraph "🗄️ STORAGE LAYER"
         J[📄 Raw Data<br/>amazon-meta.txt]
         K[📊 Processed Data<br/>CSV Files]
-        L[� Similarity Matrices<br/>Computed Similarities<br/>Cache Storage]
+        L[💾 Cache<br/>Similarity Matrices]
     end
     
     A --> B
@@ -135,18 +135,18 @@ graph TB
     H --> K
     I --> L
     
-    style A fill:#ff9999
-    style B fill:#66b3ff
-    style C fill:#99ff99
-    style D fill:#ffcc99
-    style E fill:#ff99cc
-    style F fill:#c2c2f0
-    style G fill:#ffb3e6
-    style H fill:#c4e17f
-    style I fill:#76d7c4
-    style J fill:#f7dc6f
-    style K fill:#bb8fce
-    style L fill:#85c1e9
+    style A fill:#ff9999,stroke:#333,stroke-width:2px
+    style B fill:#66b3ff,stroke:#333,stroke-width:2px
+    style C fill:#99ff99,stroke:#333,stroke-width:2px
+    style D fill:#ffcc99,stroke:#333,stroke-width:2px
+    style E fill:#ff99cc,stroke:#333,stroke-width:2px
+    style F fill:#c2c2f0,stroke:#333,stroke-width:2px
+    style G fill:#ffb3e6,stroke:#333,stroke-width:2px
+    style H fill:#c4e17f,stroke:#333,stroke-width:2px
+    style I fill:#76d7c4,stroke:#333,stroke-width:2px
+    style J fill:#f7dc6f,stroke:#333,stroke-width:2px
+    style K fill:#bb8fce,stroke:#333,stroke-width:2px
+    style L fill:#85c1e9,stroke:#333,stroke-width:2px
 ```
 
 ### 💻 Technology Stack
