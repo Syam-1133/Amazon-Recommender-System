@@ -70,3 +70,25 @@
 2025-11-12 23:16:10,312 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 23:16:10] "GET /api/analytics HTTP/1.1" 200 -
 2025-11-12 23:21:11,107 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 23:21:11] "GET /api/analytics HTTP/1.1" 200 -
 2025-11-12 23:26:55,660 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 23:26:55] "GET /api/analytics HTTP/1.1" 200 -
+2025-11-13 00:19:32,072 - utils.helpers - INFO - Initializing search engine...
+2025-11-13 00:19:32,073 - utils.helpers - INFO - Starting load_data
+2025-11-13 00:19:44,623 - utils.helpers - INFO - Loaded 548,552 products
+2025-11-13 00:19:44,624 - utils.helpers - INFO - Loaded 7,593,244 reviews
+2025-11-13 00:19:44,624 - utils.helpers - INFO - Loaded 2,509,699 category entries
+2025-11-13 00:19:44,624 - utils.helpers - INFO - Loaded 1,788,725 similar product relationships
+2025-11-13 00:19:46,146 - utils.helpers - INFO - Search indices prepared successfully
+2025-11-13 00:19:46,150 - utils.helpers - INFO - Completed load_data in 14.08 seconds
+2025-11-13 00:19:46,150 - utils.helpers - INFO - Initializing recommendation system...
+2025-11-13 00:19:46,151 - utils.helpers - INFO - Starting load_data
+2025-11-13 00:19:54,672 - utils.helpers - INFO - Loaded 548,552 products
+2025-11-13 00:19:54,673 - utils.helpers - INFO - Loaded 7,593,244 reviews
+2025-11-13 00:19:54,673 - utils.helpers - INFO - Loaded 1,788,725 similar product relationships
+2025-11-13 00:19:54,673 - utils.helpers - INFO - Using sample of 100,000 reviews for demo
+2025-11-13 00:19:55,476 - utils.helpers - INFO - Created user-item matrix: 820 users × 2741 items
+2025-11-13 00:20:30,810 - utils.helpers - INFO - Created similarity mappings for 379093 products
+2025-11-13 00:20:30,879 - utils.helpers - INFO - Recommendation data prepared successfully
+2025-11-13 00:20:30,880 - utils.helpers - INFO - Completed load_data in 44.73 seconds
+2025-11-13 00:20:30,880 - utils.helpers - INFO - ✅ Systems initialized successfully
+2025-11-13 00:20:30,927 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-13 00:20:30,927 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

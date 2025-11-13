@@ -1,0 +1,67 @@
+name: 🚀 Deploy to AWS Elastic Beanstalk
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: 🧪 Run Tests
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: 📦 Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: 🔍 Run tests
+      run: |
+        if [ -f tests/test_system.py ]; then
+          python -m pytest tests/ -v
+        else
+          echo "No tests found, skipping..."
+        fi
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    name: 🚀 Deploy to AWS
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+    
+    - name: 📅 Generate deployment package
+      run: |
+        zip -r deploy.zip . -x "*.git*" "*node_modules*" "*.vscode*" "*__pycache__*" "*.pytest_cache*" "*venv*" "*.env*"
+    
+    - name: ☁️ Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v22
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: amazon-recommender-system
+        environment_name: amazon-recommender-prod
+        version_label: ${{ github.sha }}
+        region: us-east-1
+        deployment_package: deploy.zip
+        wait_for_deployment: true
+        wait_for_environment_recovery: 120
+    
+    - name: 📊 Deploy status
+      run: |
+        echo "🎉 Deployment completed successfully!"
+        echo "🌐 Application URL: Check your AWS Console for the environment URL"
