@@ -83,6 +83,17 @@ This project implements a sophisticated recommender system using Amazon metadata
 
 </td>
 </tr>
+<tr>
+<td width="50%">
+
+### ☁️ **Production-Ready Deployment**
+- 🐳 Docker Containerization
+- ☁️ AWS Elastic Beanstalk Ready
+- 🚀 One-Click Deployment Script
+- 🔧 Environment Configuration
+
+</td>
+</tr>
 </table>
 
 <div align="center">
@@ -161,9 +172,9 @@ flowchart TB
 | **Category** | **Technologies** |
 |--------------|------------------|
 | **Backend** | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white) |
-| **Algorithms** | ![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white) ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white) |
+| **Machine Learning** | ![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white) ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white) |
 | **Frontend** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=flat-square&logo=bootstrap&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) |
-| **DevOps** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) |
+| **Cloud & DevOps** | ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Elastic Beanstalk](https://img.shields.io/badge/Elastic_Beanstalk-FF9900?style=flat-square&logo=amazon-aws&logoColor=white) |
 
 </div>
 
@@ -177,7 +188,7 @@ flowchart TB
 <summary><b>🗂️ Click to explore project structure</b></summary>
 
 ```
-🛍️ amazon-recommender-system/
+🛍️ Amazon-Recommender-System/
 ├── 🚀 web/                          # Web application layer
 │   ├── 🎯 app.py                    # Flask application entry point
 │   └── 🎨 templates/                # HTML templates
@@ -198,6 +209,39 @@ flowchart TB
 │   ├── 🤖 recommendation/           # Recommendation algorithms
 │   │   ├── 👥 collaborative_filter.py # Collaborative filtering
 │   │   ├── 🧮 similarity.py        # Similarity calculations
+│   │   └── 📈 large_scale_recommender.py # Scalable recommendation engine
+│   │
+│   └── 🛠️ utils/                   # Utility functions
+│       ├── ⚙️ config.py            # Configuration management
+│       ├── 🔧 helpers.py           # Helper functions
+│       └── 📊 performance_dashboard.py # Performance monitoring
+│
+├── 🗄️ data/                        # Data storage layer
+│   ├── 📄 raw/                     # Raw dataset files
+│   └── 📊 processed/               # Processed and cleaned data
+│       ├── 📦 amazon_products.csv
+│       ├── 📂 amazon_categories.csv
+│       ├── ⭐ amazon_reviews.csv
+│       └── 🔗 amazon_similar_products.csv
+│
+├── 🧪 tests/                       # Test suite
+│   └── 🔬 test_system.py          # System integration tests
+│
+├── 📋 logs/                        # Application logs
+│   └── 📄 app.log                 # Runtime logs
+│
+├── ☁️ .ebextensions/              # AWS Elastic Beanstalk configuration
+│   └── 01_app.config              # EB deployment settings
+│
+├── 🐳 Docker Configuration
+│   ├── 🐳 Dockerfile              # Container definition
+│   ├── 🚫 .dockerignore          # Docker ignore patterns
+│   └── 🚀 deploy_to_aws.sh       # AWS deployment script
+│
+├── 🔧 Configuration Files
+│   ├── 📋 requirements.txt        # Python dependencies
+│   ├── 🚫 .gitignore             # Git ignore patterns
+│   └── 📚 README.md              # Project documentation
 │   │   └── 🚀 large_scale_recommender.py # Scalable recommendations
 │   │
 │   └── 🛠️ utils/                    # Utility modules
@@ -298,11 +342,48 @@ docker run -p 5000:5000 amazon-recommender
 
 </details>
 
+<details>
+<summary><b>☁️ Method 3: AWS Elastic Beanstalk Deployment</b></summary>
+
+```bash
+# 1️⃣ Clone and enter directory
+git clone https://github.com/Syam-1133/Amazon-Recommender-System.git
+cd Amazon-Recommender-System
+
+# 2️⃣ Install AWS CLI and EB CLI
+pip install awscli
+pip install awsebcli
+
+# 3️⃣ Configure AWS credentials
+aws configure
+
+# 4️⃣ Initialize Elastic Beanstalk
+eb init
+
+# 5️⃣ Create and deploy environment
+eb create amazon-recommender-prod
+eb deploy
+
+# 6️⃣ Open your deployed application
+eb open
+
+# 🎉 Your app is now live on AWS!
+```
+
+**Or use the deployment script:**
+```bash
+chmod +x deploy_to_aws.sh
+./deploy_to_aws.sh
+```
+
+</details>
+
 <div align="center">
   
 ### 🌐 **Access Your Application**
 
 **Local Development:** `http://localhost:5000`
+**AWS Production:** Available after deployment via `eb open`
 
 <img src="https://img.shields.io/badge/Status-Ready%20to%20Launch-brightgreen?style=for-the-badge&logo=rocket&logoColor=white" alt="Ready to Launch"/>
 
