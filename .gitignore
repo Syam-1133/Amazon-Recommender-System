@@ -50,3 +50,4 @@ Thumbs.db
 
 
 
+.elasticbeanstalk/app_versions/*.zip
