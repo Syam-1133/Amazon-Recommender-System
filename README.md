@@ -98,55 +98,60 @@ This project implements a sophisticated recommender system using Amazon metadata
 ### 🎨 System Architecture Diagram
 
 ```mermaid
-graph TB
-    subgraph "🎨 PRESENTATION LAYER"
+flowchart TB
+    %% ===== PRESENTATION LAYER =====
+    subgraph PresentationLayer["🎨 PRESENTATION LAYER"]
         A[📱 Web Frontend<br/>Bootstrap UI]
         B[🔌 REST APIs<br/>Flask Server]
-        C[📊 Dashboard<br/>Analytics]
+        C[📊 Dashboard<br/>Analytics Interface]
     end
-    
-    subgraph "⚙️ APPLICATION LAYER"
-        D[🔍 Search Engine<br/>Query Processing + Fuzzy Search]
-        E[🤖 Recommender<br/>Collaborative + Content Filtering]
-        F[📊 Performance<br/>Metrics & Monitoring]
+
+    %% ===== APPLICATION LAYER =====
+    subgraph ApplicationLayer["⚙️ APPLICATION LAYER"]
+        D[🔍 Search Engine<br/>Query Processing +<br/>Fuzzy Search +<br/>Math Operations]
+        E[🤖 Recommender System<br/>Collaborative Filtering +<br/>Content Based +<br/>Hybrid Model]
+        F[📊 Performance Monitor<br/>Metrics Collection +<br/>System Analytics +<br/>Resource Monitoring]
     end
-    
-    subgraph "💾 DATA LAYER"
-        G[📥 Data Parser<br/>SNAP Dataset Processing]
-        H[🧮 Similarity<br/>Cosine + Pearson + Jaccard]
-        I[🛠️ Utilities<br/>Config + Logging + Helpers]
+
+    %% ===== DATA LAYER =====
+    subgraph DataLayer["💾 DATA LAYER"]
+        G[📥 Data Parser<br/>SNAP Dataset Processing +<br/>Data Cleaning +<br/>CSV Export]
+        H[🧮 Similarity Engine<br/>Cosine Similarity +<br/>Pearson Correlation +<br/>Jaccard Index]
+        I[🛠️ Utility Manager<br/>Configuration +<br/>Logging System +<br/>Helper Functions]
     end
-    
-    subgraph "🗄️ STORAGE LAYER"
-        J[📄 Raw Data<br/>amazon-meta.txt]
-        K[📊 Processed Data<br/>CSV Files]
-        L[💾 Cache<br/>Similarity Matrices]
+
+    %% ===== STORAGE LAYER =====
+    subgraph StorageLayer["🗄️ STORAGE LAYER"]
+        J[📄 Raw Data Storage<br/>amazon-meta.txt +<br/>Original SNAP Dataset]
+        K[📊 Processed Data<br/>Cleaned CSV Files +<br/>Structured Data]
+        L[💾 Cache System<br/>Similarity Matrices +<br/>Precomputed Results +<br/>Session Data]
     end
+
+    %% ===== DATA FLOW CONNECTIONS =====
+    A -->|User Requests| B
+    B -->|API Responses| C
+    A -->|Search Queries| D
+    B -->|Recommendation Calls| E
+    C -->|Monitoring Data| F
     
-    A --> B
-    B --> C
-    A --> D
-    B --> E
-    C --> F
-    D --> G
-    E --> H
-    F --> I
-    G --> J
-    H --> K
-    I --> L
+    D -->|Data Processing| G
+    E -->|Similarity Computation| H
+    F -->|Utility Operations| I
     
-    style A fill:#ff9999,stroke:#333,stroke-width:2px
-    style B fill:#66b3ff,stroke:#333,stroke-width:2px
-    style C fill:#99ff99,stroke:#333,stroke-width:2px
-    style D fill:#ffcc99,stroke:#333,stroke-width:2px
-    style E fill:#ff99cc,stroke:#333,stroke-width:2px
-    style F fill:#c2c2f0,stroke:#333,stroke-width:2px
-    style G fill:#ffb3e6,stroke:#333,stroke-width:2px
-    style H fill:#c4e17f,stroke:#333,stroke-width:2px
-    style I fill:#76d7c4,stroke:#333,stroke-width:2px
-    style J fill:#f7dc6f,stroke:#333,stroke-width:2px
-    style K fill:#bb8fce,stroke:#333,stroke-width:2px
-    style L fill:#85c1e9,stroke:#333,stroke-width:2px
+    G -->|Reads/Writes| J
+    H -->|Stores/Loads| K
+    I -->|Manages Cache| L
+
+    %% ===== STYLING =====
+    classDef presentation fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
+    classDef application fill:#66b3ff,stroke:#333,stroke-width:2px,color:#000
+    classDef data fill:#99ff99,stroke:#333,stroke-width:2px,color:#000
+    classDef storage fill:#ffcc99,stroke:#333,stroke-width:2px,color:#000
+    
+    class A,B,C presentation
+    class D,E,F application
+    class G,H,I data
+    class J,K,L storage
 ```
 
 ### 💻 Technology Stack
