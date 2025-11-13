@@ -15,6 +15,9 @@ demo_*.py
 test_*.py
 show_*.py
 
+# AWS Elastic Beanstalk
+.elasticbeanstalk/
+*.zip
 
 # Data files
 data/raw/
