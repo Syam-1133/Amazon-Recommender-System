@@ -18,14 +18,32 @@ from .config import LOG_CONFIG
 
 def setup_logging():
     """Setup logging configuration"""
-    logging.basicConfig(
-        level=getattr(logging, LOG_CONFIG["level"]),
-        format=LOG_CONFIG["format"],
-        handlers=[
-            logging.FileHandler(LOG_CONFIG["log_file"]),
-            logging.StreamHandler()
-        ]
-    )
+    # Get or create logger
+    logger = logging.getLogger()
+    
+    # Clear existing handlers to avoid duplicates
+    logger.handlers.clear()
+    
+    # Set level
+    logger.setLevel(getattr(logging, LOG_CONFIG["level"]))
+    
+    # Create formatters
+    formatter = logging.Formatter(LOG_CONFIG["format"])
+    
+    # Create and configure file handler
+    file_handler = logging.FileHandler(LOG_CONFIG["log_file"])
+    file_handler.setFormatter(formatter)
+    file_handler.setLevel(getattr(logging, LOG_CONFIG["level"]))
+    
+    # Create and configure console handler
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+    console_handler.setLevel(getattr(logging, LOG_CONFIG["level"]))
+    
+    # Add handlers to logger
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+    
     return logging.getLogger(__name__)
 
 

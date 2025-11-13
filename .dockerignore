@@ -50,8 +50,7 @@ data/raw/*
 logs/*
 !logs/.gitkeep
 
-# Jupyter notebook checkpoints
-.ipynb_checkpoints/
+
 
 # Environment files
 .env

@@ -1,51 +1,16 @@
-# Apache Spark and Big Data Libraries
-pyspark
-findspark
-
-# Data Processing and Analysis
-pandas
-numpy
-scipy
-
-# Machine Learning
-scikit-learn
-surprise
-implicit
-
+# Essential packages for production deployment
 # Web Framework
 flask
-streamlit
 flask-cors
+gunicorn
 
-# Data Visualization
-matplotlib
-seaborn
-plotly
+# Core Data Processing
+pandas
+numpy
 
-# Data Storage and Processing
-sqlalchemy
-psycopg2-binary
+# Basic Machine Learning
+scikit-learn
 
-# Utilities
+# Basic utilities
 requests
-beautifulsoup4
-tqdm
 python-dotenv
-
-# Testing
-pytest
-pytest-cov
-
-# Jupyter Notebook Support
-jupyter
-ipykernel
-nbformat
-
-# Text Processing
-nltk
-textblob
-
-# Development Tools
-black
-flake8
-pre-commit

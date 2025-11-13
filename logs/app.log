@@ -1,0 +1,38 @@
+2025-11-12 22:05:15,037 - utils.helpers - INFO - Initializing search engine...
+2025-11-12 22:05:15,037 - utils.helpers - INFO - Starting load_data
+2025-11-12 22:05:27,171 - utils.helpers - INFO - Loaded 548,552 products
+2025-11-12 22:05:27,171 - utils.helpers - INFO - Loaded 7,593,244 reviews
+2025-11-12 22:05:27,171 - utils.helpers - INFO - Loaded 2,509,699 category entries
+2025-11-12 22:05:27,172 - utils.helpers - INFO - Loaded 1,788,725 similar product relationships
+2025-11-12 22:05:28,613 - utils.helpers - INFO - Search indices prepared successfully
+2025-11-12 22:05:28,617 - utils.helpers - INFO - Completed load_data in 13.58 seconds
+2025-11-12 22:05:28,617 - utils.helpers - INFO - Initializing recommendation system...
+2025-11-12 22:05:28,618 - utils.helpers - INFO - Starting load_data
+2025-11-12 22:05:37,014 - utils.helpers - INFO - Loaded 548,552 products
+2025-11-12 22:05:37,015 - utils.helpers - INFO - Loaded 7,593,244 reviews
+2025-11-12 22:05:37,015 - utils.helpers - INFO - Loaded 1,788,725 similar product relationships
+2025-11-12 22:05:37,015 - utils.helpers - INFO - Using sample of 100,000 reviews for demo
+2025-11-12 22:05:37,778 - utils.helpers - INFO - Created user-item matrix: 820 users × 2741 items
+2025-11-12 22:06:13,767 - utils.helpers - INFO - Created similarity mappings for 379093 products
+2025-11-12 22:06:13,827 - utils.helpers - INFO - Recommendation data prepared successfully
+2025-11-12 22:06:13,828 - utils.helpers - INFO - Completed load_data in 45.21 seconds
+2025-11-12 22:06:13,828 - utils.helpers - INFO - ✅ Systems initialized successfully
+2025-11-12 22:06:13,863 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-12 22:06:13,863 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-12 22:06:28,930 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:06:28] "GET / HTTP/1.1" 200 -
+2025-11-12 22:06:30,447 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:06:30] "GET /api/stats HTTP/1.1" 200 -
+2025-11-12 22:06:33,437 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:06:33] "GET /analytics HTTP/1.1" 200 -
+2025-11-12 22:06:40,058 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:06:40] "GET /api/analytics HTTP/1.1" 200 -
+2025-11-12 22:06:46,244 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:06:46] "GET /recommendations HTTP/1.1" 200 -
+2025-11-12 22:06:46,295 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:06:46] "GET /api/users HTTP/1.1" 200 -
+2025-11-12 22:06:53,054 - utils.helpers - INFO - Starting recommend_for_user
+2025-11-12 22:06:53,517 - utils.helpers - INFO - Completed recommend_for_user in 0.46 seconds
+2025-11-12 22:06:53,518 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:06:53] "GET /api/recommendations/A1J3HK3IPLHOJ3?method=user_based&n=5 HTTP/1.1" 200 -
+2025-11-12 22:07:04,812 - utils.helpers - INFO - Starting recommend_for_user
+2025-11-12 22:07:05,247 - utils.helpers - INFO - Completed recommend_for_user in 0.44 seconds
+2025-11-12 22:07:05,248 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:07:05] "GET /api/recommendations/A1J3HK3IPLHOJ3?method=user_based&n=5 HTTP/1.1" 200 -
+2025-11-12 22:07:15,993 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:07:15] "GET /api/co_purchasing/A1J3HK3IPLHOJ3 HTTP/1.1" 200 -
+2025-11-12 22:07:31,894 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:07:31] "GET /search HTTP/1.1" 200 -
+2025-11-12 22:07:32,001 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:07:32] "GET /api/categories HTTP/1.1" 200 -
+2025-11-12 22:07:34,151 - werkzeug - INFO - 127.0.0.1 - - [12/Nov/2025 22:07:34] "POST /api/search HTTP/1.1" 200 -

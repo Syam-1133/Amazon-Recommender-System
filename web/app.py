@@ -9,23 +9,19 @@ import logging
 from pathlib import Path
 import pandas as pd
 
-# Configure logging for production
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
 # Add src to path to import our modules
 current_dir = Path(__file__).parent
 project_root = current_dir.parent
 sys.path.append(str(project_root / "src"))
 
 from search.search_engine import AmazonSearchEngine
-from search.query_processor import QueryProcessor
 from recommendation.collaborative_filter import CollaborativeFilteringRecommender
 from utils.config import WEB_CONFIG
 from utils.performance_dashboard import dashboard, monitor_performance
+from utils.helpers import setup_logging
+
+# Configure logging for production using our logging setup
+logger = setup_logging()
 
 app = Flask(__name__)
 CORS(app)
@@ -37,25 +33,13 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-change-
 # Initialize search engine and recommender
 search_engine = None
 recommender = None
-query_processor = None
-
-def format_number(num):
-    """Format numbers to be more readable (e.g., 1500000 -> 1.5M)"""
-    if num >= 1000000:
-        return f"{num / 1000000:.1f}M"
-    elif num >= 1000:
-        return f"{num / 1000:.1f}K"
-    else:
-        return str(num)
 
 def init_systems():
     """Initialize search and recommendation systems"""
-    global search_engine, recommender, query_processor
+    global search_engine, recommender
     try:
         logger.info("Initializing search engine...")
         search_engine = AmazonSearchEngine()
-        logger.info("Initializing query processor...")
-        query_processor = QueryProcessor()
         logger.info("Initializing recommendation system...")
         recommender = CollaborativeFilteringRecommender()
         logger.info("✅ Systems initialized successfully")
@@ -63,7 +47,6 @@ def init_systems():
         logger.error(f"❌ Error initializing systems: {str(e)}")
         search_engine = None
         recommender = None
-        query_processor = None
 
 @app.route('/')
 def home():
@@ -98,61 +81,17 @@ def api_search():
         brand = data.get('brand', '')
         limit = data.get('limit', 20)
         
-        # Check if the query contains complex operators (AND, OR, =, >=, etc.)
-        has_complex_operators = any(op in query_text.upper() for op in ['AND', 'OR', '>=', '<=', '>', '<', '=', '!='])
+        # Prepare query parameters for advanced search
+        query_params = {}
         
-        if has_complex_operators and query_processor:
-            # Parse complex query using QueryProcessor
-            try:
-                parsed_query = query_processor.parse_query_string(query_text)
-                
-                # Convert parsed query to search engine parameters
-                query_params = {'limit': limit}
-                
-                # Handle text search from parsed query
-                if parsed_query.text_query:
-                    query_params['text'] = parsed_query.text_query
-                
-                # Handle filters from parsed query
-                for filter_obj in parsed_query.filters:
-                    if filter_obj.field in ['category', 'group']:
-                        query_params['category'] = filter_obj.value
-                    elif filter_obj.field in ['avg_rating', 'rating']:
-                        query_params['rating_op'] = filter_obj.operator.value
-                        query_params['rating_value'] = filter_obj.value
-                    elif filter_obj.field in ['num_reviews', 'total_reviews']:
-                        query_params['reviews_op'] = filter_obj.operator.value
-                        query_params['reviews_value'] = filter_obj.value
-                
-                # Override with form data if provided
-                if category:
-                    query_params['category'] = category
-                if brand:
-                    query_params['brand'] = brand
-                
-            except Exception as e:
-                logger.warning(f"Failed to parse complex query, falling back to simple search: {str(e)}")
-                # Fall back to simple search
-                query_params = {}
-                if query_text:
-                    query_params['text'] = query_text
-                if category:
-                    query_params['category'] = category
-                if brand:
-                    query_params['brand'] = brand
-                query_params['limit'] = limit
-        else:
-            # Prepare query parameters for simple search
-            query_params = {}
-            
-            if query_text:
-                query_params['text'] = query_text
-            if category:
-                query_params['category'] = category
-            if brand:
-                query_params['brand'] = brand
-            
-            query_params['limit'] = limit
+        if query_text:
+            query_params['text'] = query_text
+        if category:
+            query_params['category'] = category
+        if brand:
+            query_params['brand'] = brand
+        
+        query_params['limit'] = limit
         
         # Perform search
         results = search_engine.advanced_search(query_params)
@@ -372,18 +311,28 @@ def api_stats():
     
     try:
         total_products = len(search_engine.products_df)
-        total_ratings = len(search_engine.reviews_df)
+        total_ratings = len(search_engine.reviews_df) 
         total_users = search_engine.reviews_df['customer_id'].nunique()
+        
+        # Format numbers for display
+        def format_number(num):
+            if num >= 1_000_000:
+                return f"{num / 1_000_000:.1f}M"
+            elif num >= 1_000:
+                return f"{num / 1_000:.0f}K"
+            else:
+                return str(num)
         
         stats = {
             'total_products': total_products,
             'total_ratings': total_ratings,
             'total_users': total_users,
-            'total_products_formatted': format_number(total_products),
-            'total_ratings_formatted': format_number(total_ratings),
-            'total_users_formatted': format_number(total_users),
             'categories': search_engine.products_df['main_category'].nunique() if 'main_category' in search_engine.products_df.columns else 0,
             'avg_rating': float(search_engine.reviews_df['rating'].mean()),
+            # Formatted versions for display
+            'total_products_formatted': format_number(total_products),
+            'total_users_formatted': format_number(total_users),
+            'total_ratings_formatted': format_number(total_ratings),
         }
         
         return jsonify(stats)
